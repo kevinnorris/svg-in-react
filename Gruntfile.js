@@ -96,7 +96,6 @@ module.exports = function(grunt) {
 					port: port,
 					base: root,
 					livereload: true,
-					open: true,
 					useAvailablePort: true
 				}
 			}
@@ -132,7 +131,7 @@ module.exports = function(grunt) {
 				tasks: 'css-themes'
 			},
 			css: {
-				files: [ 'css/reveal.scss' ],
+				files: [ 'css/*.scss' ],
 				tasks: 'css-core'
 			},
 			html: {
