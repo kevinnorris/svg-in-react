@@ -186,7 +186,13 @@ body {
 		color: #17ff2e;
 	}
 	.reveal .slides section .fragment.highlight-blue.visible {
-		color: #1b91ff;
+		color: #61DAFB;
+	}
+	.reveal .slides section .fragment.highlight-blue.visible .hljs-tag {
+		color: #61DAFB;
+	}
+	.reveal .slides section .fragment.highlight-blue.visible .hljs-string {
+		color: #61DAFB;
 	}
 
 .reveal .slides section .fragment.highlight-current-red.current-fragment {
@@ -196,7 +202,15 @@ body {
 	color: #17ff2e;
 }
 .reveal .slides section .fragment.highlight-current-blue.current-fragment {
-	color: #1b91ff;
+	color: #61DAFB;
+}
+
+.reveal .slides section .fragment.highlight-current-blue.current-fragment .hljs-tag {
+	color: #61DAFB;
+}
+
+.reveal .slides section .fragment.highlight-current-blue.current-fragment .hljs-string {
+	color: #61DAFB;
 }
 
 
