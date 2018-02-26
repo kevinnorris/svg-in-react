@@ -161,6 +161,9 @@ body {
 .reveal .slides section .fragment.highlight-current-blue.current-fragment .hljs-string {
   color: #61DAFB; }
 
+.reveal .slides section .fragment.highlight-current-blue.current-fragment .hljs-params {
+  color: #61DAFB; }
+
 /*********************************************
  * DEFAULT ELEMENT STYLES
  *********************************************/

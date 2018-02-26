@@ -395,14 +395,14 @@
               </code>
             </pre>
             <pre class="fragment code-block">
-              <code data-trim>
+              <code data-trim data-noescape>
                 {
                   test: /\.svg$/,
                   use: [
                     {
                       loader: 'url-loader',
                       options: {
-                        limit: 8000
+                        <span class="fragment highlight-blue">limit:</span> 8000
                       }
                     }
                   ]
@@ -427,7 +427,7 @@
               <code data-trim data-noescape>
                   import React from "react";
 
-                  <span class="fragment" data-fragment-index="0">import reactLogo from './reactLogo.svg';</span>
+                  <span class="fragment" data-fragment-index="0">import reactLogo from '../assets/reactLogo.svg';</span>
                   
                   export default () => (
                     <span class="fragment" data-fragment-index="1">&lt;img src={reactLogo} alt="React logo" /&gt;</span>
@@ -450,15 +450,19 @@
                   );
               </code>
 						</pre>
-						<pre class="code-block wide small-font">
+						<pre class="code-block full-width small-font">
               <code data-trim data-noescape>
 								react-logo {
-								  <span class="fragment" data-fragment-index="1">background: url(./reactLogo.svg) no-repeat center center;</span>
+								  <span class="fragment" data-fragment-index="1">background: url(../assets/reactLogo.svg) no-repeat center center;</span>
 								  <span class="fragment" data-fragment-index="2">background-size: 200px;</span>
 								}
               </code>
-            </pre>
-          </section>
+						</pre>
+						<aside class="notes" data-markdown>
+              * Benifits of this method = set SVG as background of elements
+              * For example search input could have search icon background positions left
+						</aside>
+					</section>
         </section>
         <section>
           <h2>Modifiability?</h2>
@@ -468,11 +472,11 @@
             <li class="fragment">Cluttered asset folder</li>
           </ul>
           <aside  class="notes" data-markdown>
-              * Using svgs with file paths we lost all the cool stuff I showed earlier
-              * You can't even change the color of the whole!
-              * If you want the react svg in a different color you need to make another file, change the fill...
-              * Possibly more requests for resources, if not using url-loader
-            </aside>
+            * Using svgs with file paths we lost all the cool stuff I showed earlier
+            * You can't even change the color of the whole!
+            * If you want the react svg in a different color you need to make another file, change the fill...
+            * Possibly more requests for resources, if not using url-loader
+          </aside>
 				</section>
 				<section>
 					<h2>Inline SVGs</h2>
@@ -483,7 +487,12 @@
                 &lt;circle cx="247.2" cy="218.5" r="45.7"/&gt;
               &lt;/svg>
 						</code>
-					</pre>
+          </pre>
+          <aside  class="notes" data-markdown>
+            * Need inline svgs
+            * Can add a class with desired styles / modifications
+            * How do we get inline svgs in React?
+          </aside>
         </section>
         <section>
           <section>
@@ -492,14 +501,19 @@
               <code data-trim data-noescape>
                 import React from 'react';
 
-                export const ReactIcon = ({<span class="fragment highlight-blue">className</span>}) => (
-                  &lt;svg class=<span class="fragment highlight-blue">{className}</span> viewBox="0 0 500 450"&gt;
+                export const ReactIcon = ({<span class="fragment highlight-current-blue">className</span>}) => (
+                  &lt;svg class=<span class="fragment highlight-current-blue">{className}</span> viewBox="0 0 500 450"&gt;
                     &lt;path d="m492.6,218.5c0,-32.5 -40.7,-63.3 -103.1,-82.4c14.4,-63.6 8,-114.2 -20.2,-130.4c-6.5,-3.8 -14.1,-5.6 -22.4,-5.6l0,22.3c4.6,0 8.3,0.9 11.4,2.6c13.6,7.8 19.5,37.5 14.9,75.7c-1.1,9.4 -2.9,19.3 -5.1,29.4c-19.6,-4.8 -41,-8.5 -63.5,-10.9c-13.5,-18.5 -27.5,-35.3 -41.6,-50c32.6,-30.3 63.2,-46.9 84,-46.9l0,-22.3c0,0 0,0 0,0c-27.5,0 -63.5,19.6 -99.9,53.6c-36.4,-33.8 -72.4,-53.2 -99.9,-53.2l0,22.3c20.7,0 51.4,16.5 84,46.6c-14,14.7 -28,31.4 -41.3,49.9c-22.6,2.4 -44,6.1 -63.6,11c-2.3,-10 -4,-19.7 -5.2,-29c-4.7,-38.2 1.1,-67.9 14.6,-75.8c3,-1.8 6.9,-2.6 11.5,-2.6l0,-22.3c0,0 0,0 0,0c-8.4,0 -16,1.8 -22.6,5.6c-28.1,16.2 -34.4,66.7 -19.9,130.1c-62.2,19.2 -102.7,49.9 -102.7,82.3c0,32.5 40.7,63.3 103.1,82.4c-14.4,63.6 -8,114.2 20.2,130.4c6.5,3.8 14.1,5.6 22.5,5.6c27.5,0 63.5,-19.6 99.9,-53.6c36.4,33.8 72.4,53.2 99.9,53.2c8.4,0 16,-1.8 22.6,-5.6c28.1,-16.2 34.4,-66.7 19.9,-130.1c62,-19.1 102.5,-49.9 102.5,-82.3zm-130.2,-66.7c-3.7,12.9 -8.3,26.2 -13.5,39.5c-4.1,-8 -8.4,-16 -13.1,-24c-4.6,-8 -9.5,-15.8 -14.4,-23.4c14.2,2.1 27.9,4.7 41,7.9zm-45.8,106.5c-7.8,13.5 -15.8,26.3 -24.1,38.2c-14.9,1.3 -30,2 -45.2,2c-15.1,0 -30.2,-0.7 -45,-1.9c-8.3,-11.9 -16.4,-24.6 -24.2,-38c-7.6,-13.1 -14.5,-26.4 -20.8,-39.8c6.2,-13.4 13.2,-26.8 20.7,-39.9c7.8,-13.5 15.8,-26.3 24.1,-38.2c14.9,-1.3 30,-2 45.2,-2c15.1,0 30.2,0.7 45,1.9c8.3,11.9 16.4,24.6 24.2,38c7.6,13.1 14.5,26.4 20.8,39.8c-6.3,13.4 -13.2,26.8 -20.7,39.9zm32.3,-13c5.4,13.4 10,26.8 13.8,39.8c-13.1,3.2 -26.9,5.9 -41.2,8c4.9,-7.7 9.8,-15.6 14.4,-23.7c4.6,-8 8.9,-16.1 13,-24.1zm-101.4,106.7c-9.3,-9.6 -18.6,-20.3 -27.8,-32c9,0.4 18.2,0.7 27.5,0.7c9.4,0 18.7,-0.2 27.8,-0.7c-9,11.7 -18.3,22.4 -27.5,32zm-74.4,-58.9c-14.2,-2.1 -27.9,-4.7 -41,-7.9c3.7,-12.9 8.3,-26.2 13.5,-39.5c4.1,8 8.4,16 13.1,24c4.7,8 9.5,15.8 14.4,23.4zm73.9,-208.1c9.3,9.6 18.6,20.3 27.8,32c-9,-0.4 -18.2,-0.7 -27.5,-0.7c-9.4,0 -18.7,0.2 -27.8,0.7c9,-11.7 18.3,-22.4 27.5,-32zm-74,58.9c-4.9,7.7 -9.8,15.6 -14.4,23.7c-4.6,8 -8.9,16 -13,24c-5.4,-13.4 -10,-26.8 -13.8,-39.8c13.1,-3.1 26.9,-5.8 41.2,-7.9zm-90.5,125.2c-35.4,-15.1 -58.3,-34.9 -58.3,-50.6c0,-15.7 22.9,-35.6 58.3,-50.6c8.6,-3.7 18,-7 27.7,-10.1c5.7,19.6 13.2,40 22.5,60.9c-9.2,20.8 -16.6,41.1 -22.2,60.6c-9.9,-3.1 -19.3,-6.5 -28,-10.2zm53.8,142.9c-13.6,-7.8 -19.5,-37.5 -14.9,-75.7c1.1,-9.4 2.9,-19.3 5.1,-29.4c19.6,4.8 41,8.5 63.5,10.9c13.5,18.5 27.5,35.3 41.6,50c-32.6,30.3 -63.2,46.9 -84,46.9c-4.5,-0.1 -8.3,-1 -11.3,-2.7zm237.2,-76.2c4.7,38.2 -1.1,67.9 -14.6,75.8c-3,1.8 -6.9,2.6 -11.5,2.6c-20.7,0 -51.4,-16.5 -84,-46.6c14,-14.7 28,-31.4 41.3,-49.9c22.6,-2.4 44,-6.1 63.6,-11c2.3,10.1 4.1,19.8 5.2,29.1zm38.5,-66.7c-8.6,3.7 -18,7 -27.7,10.1c-5.7,-19.6 -13.2,-40 -22.5,-60.9c9.2,-20.8 16.6,-41.1 22.2,-60.6c9.9,3.1 19.3,6.5 28.1,10.2c35.4,15.1 58.3,34.9 58.3,50.6c-0.1,15.7 -23,35.6 -58.4,50.6z"/&gt;
                     &lt;circle cx="247.2" cy="218.5" r="45.7"/&gt;
                   &lt;/svg>
                 );
               </code>
             </pre>
+            <aside  class="notes" data-markdown>
+              * Make a component for the SVG
+              * Have it take a class name
+              * Attatch that class name to the SVG
+            </aside>
           </section>
           <section>
             <svg class="thumbnail react fragment" data-fragment-index="1" viewBox="0 0 500 450">
@@ -519,14 +533,15 @@
           </section>
         </section>
         <section>
-          <h2>Maintanance</h2>
+          <h2>Maintenance</h2>
           <ul>
             <li class="fragment">Clean each SVG</li>
-            <li class="fragment">Creat a component for each SVG</li>
+            <li class="fragment">Create a component for each SVG</li>
             <li class="fragment">Manually update each component</li>
           </ul>
-          <aside  class="notes" data-markdown>
-            * While its only a 5 minute job per if you have many icons and things change and/or are added regularly
+          <aside class="notes" data-markdown>
+            * Fair bit of maintanance with this approach
+            * While its only a 5 minute, if you have a lot of icons that are updated or added to regularly
             * Can add up
             * What if you didn't have to do any of this?
           </aside>
@@ -554,31 +569,41 @@
               <p class="fragment" data-fragment-index="3">=></p>
               <p class="fragment dark-light" data-fragment-index="3">React Component</p>
             </div>
+            <aside class="notes" data-markdown>
+              * Runs through SVGO a node-based optimization tool for SVG files
+              * How do we use it?
+            </aside>
           </section>
           <section>
             <pre class="code-block wide small-font js">
-                <code data-trim data-noescape>
-                  {
-                    test: /\.svg$/,
-                    use: [
-                      {
-                        loader: <span class="fragment highlight-current-blue">"babel-loader"</span>
-                      },
-                      {
-                        loader: <span class="fragment highlight-current-blue">"react-svg-loader"</span>,
-                        <span class="fragment highlight-current-blue">options:</span> {
-                          <span class="fragment highlight-current-blue">svgo:</span> {
-                            <span class="fragment highlight-current-blue">plugins:</span> [
-                              <span class="fragment highlight-current-blue">{ removeTitle: true }</span>,
-                              <span class="fragment highlight-current-blue">{ removeXMLNS: true }</span>
-                            ],
-                          }
+              <code data-trim data-noescape>
+                {
+                  test: /\.svg$/,
+                  use: [
+                    {
+                      loader: <span class="fragment highlight-current-blue">"babel-loader"</span>
+                    },
+                    {
+                      loader: <span class="fragment highlight-current-blue">"react-svg-loader"</span>,
+                      <span class="fragment highlight-current-blue">options:</span> {
+                        <span class="fragment highlight-current-blue">svgo:</span> {
+                          <span class="fragment highlight-current-blue">plugins:</span> [
+                            <span class="fragment highlight-current-blue">{ removeTitle: true }</span>,
+                            <span class="fragment highlight-current-blue">{ removeXMLNS: true }</span>
+                          ],
                         }
                       }
-                    ]
-                  }
-                </code>
-              </pre>
+                    }
+                  ]
+                }
+              </code>
+            </pre>
+            <aside class="notes" data-markdown>
+              * Have to run result through babel-loader to transpile like the rest of our JS files
+              * Lot of SVGO specific options to decide how it cleans your SVGs
+              * Most options are plugins for SVGO, may are used by default
+              * Recommend looking at the SVGO documentation
+            </aside>
           </section>
           <section>
             <svg class="thumbnail react fragment" data-fragment-index="1" viewBox="0 0 500 450" xmlns="http://www.w3.org/2000/svg">
@@ -595,6 +620,10 @@
                 );
               </code>
             </pre>
+            <aside class="notes" data-markdown>
+              * Can pass a class name
+              * Can also pass width and height
+            </aside>
           </section>
           <section>
             <pre class="code-block full-width small-font html">
@@ -625,6 +654,11 @@
                 &lt;/svg&gt;
               </code>
             </pre>
+            <aside class="notes" data-markdown>
+              * You can pass in a file directly from your designers
+              * This one is from sketch and is this down arrow
+              * When you look at the inline svg on the page you get ...
+            </aside>
           </section>
         </section>
 
@@ -635,6 +669,10 @@
             <li class="fragment">SVGs are added to your project frequently</li>
             <li class="fragment">Exisiting SVGs are updated frequently</li>
           </ul>
+          <aside class="notes" data-markdown>
+              * Your probably looking at me and thinking, cool but ...
+              * Our use case at Movio is
+            </aside>
         </section>
 
         <section>
