@@ -1,23 +1,12 @@
 {
-  "name": "reveal.js",
+  "name": "svg-in-react",
   "version": "3.6.0",
-  "description": "The HTML Presentation Framework",
-  "homepage": "http://revealjs.com",
-  "subdomain": "revealjs",
+  "description": "SVG in React Presentation",
   "main": "js/reveal.js",
   "scripts": {
     "test": "grunt test",
     "start": "grunt serve",
     "build": "grunt"
-  },
-  "author": {
-    "name": "Hakim El Hattab",
-    "email": "hakim.elhattab@gmail.com",
-    "web": "http://hakim.se"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/hakimel/reveal.js.git"
   },
   "engines": {
     "node": ">=4.0.0"
