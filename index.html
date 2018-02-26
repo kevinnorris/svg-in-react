@@ -219,6 +219,7 @@
 					<span class="fragment" id="expand" data-fragment-index="0"></span>
 					<aside  class="notes" data-markdown>
 						* Small file sizes that compresses well
+						* For example, can see React Icon
 						* Scale to any size without loss of clarity
 					</aside>
 				</section>
@@ -411,7 +412,8 @@
             </pre>
             <aside  class="notes" data-markdown>
               * The easiest way to use SVGs in a React project is with file paths
-              * To get file paths in Webpack you can use:
+							* To get file paths in Webpack you can use:
+							* A snippet from your webpack config
               * file-loader: return the files public URL
               * url-loader: works like file-loader but returns a DataURL if the file is smaller than a byte limit, base64
               * Many other options for different encoding of DataURL and other settings
@@ -459,7 +461,7 @@
               </code>
 						</pre>
 						<aside class="notes" data-markdown>
-              * Benifits of this method = set SVG as background of elements
+              * Bit more complicated but Benifits of this method = set SVG as background of elements
               * For example search input could have search icon background positions left
 						</aside>
 					</section>
@@ -491,7 +493,8 @@
           <aside  class="notes" data-markdown>
             * Need inline svgs
             * Can add a class with desired styles / modifications
-            * How do we get inline svgs in React?
+						* How do we get inline svgs in React?
+						* How do we write any presentational code in React?
           </aside>
         </section>
         <section>
@@ -510,7 +513,8 @@
               </code>
             </pre>
             <aside  class="notes" data-markdown>
-              * Make a component for the SVG
+							* Make a component for the SVG
+							* Encapsulate inline code, want to clean all the random stuff that comes from sketch
               * Have it take a class name
               * Attatch that class name to the SVG
             </aside>
@@ -621,6 +625,7 @@
               </code>
             </pre>
             <aside class="notes" data-markdown>
+							* Our webpack config has changed
               * Can pass a class name
               * Can also pass width and height
             </aside>
@@ -655,6 +660,7 @@
               </code>
             </pre>
             <aside class="notes" data-markdown>
+							* Behind the scenes react-svg-loader is doing a lot more
               * You can pass in a file directly from your designers
               * This one is from sketch and is this down arrow
               * When you look at the inline svg on the page you get ...
